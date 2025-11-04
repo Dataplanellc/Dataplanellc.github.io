@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
 
-body {
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
@@ -94,35 +94,6 @@ body {
             100% { transform: translate(40px, 40px); }
         }
 
-        /* Floating particles */
-        .particle {
-            position: fixed;
-            width: 3px;
-            height: 3px;
-            background: rgba(167, 112, 239, 0.6);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            animation: float 15s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(50px);
-                opacity: 0;
-            }
-        }
-
         .container {
             position: relative;
             z-index: 10;
@@ -145,6 +116,68 @@ body {
         }
 
         .dashboard-container.active {
+            display: block;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid rgba(167, 112, 239, 0.15);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #a770ef 0%, #cf8bf3 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 14px;
+            z-index: -1;
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            color: #fff;
+            background: transparent;
+        }
+
+        .tab-btn.active::before {
+            opacity: 1;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
             display: block;
         }
 
@@ -298,9 +331,7 @@ body {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid rgba(167, 112, 239, 0.2);
+            margin-bottom: 32px;
         }
 
         .user-info h2 {
@@ -623,6 +654,40 @@ body {
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
+        /* Account Section Styles */
+        .account-info {
+            display: grid;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(167, 112, 239, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(167, 112, 239, 0.3);
+        }
+
+        .info-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .info-value {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
         @keyframes slideIn {
             from { 
                 opacity: 0; 
@@ -642,6 +707,11 @@ body {
             .dashboard-header {
                 flex-direction: column;
                 gap: 16px;
+                align-items: flex-start;
+            }
+
+            .tab-navigation {
+                flex-direction: column;
             }
 
             .file-actions {
@@ -696,47 +766,87 @@ body {
     <div class="container dashboard-container" id="dashboardContainer">
         <div class="dashboard-header">
             <div class="user-info">
-                <h2>Dashboard</h2>
-                <p>Welcome, <span id="dashboardUsername">User</span></p>
+                <h2>Welcome back!</h2>
+                <p><span id="dashboardUsername">User</span></p>
             </div>
             <button class="btn btn-secondary" onclick="handleLogout()" style="width: auto; padding: 12px 24px; margin: 0;">Logout</button>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Total Files</h3>
-                <div class="value" id="totalFiles">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Storage Used</h3>
-                <div class="value" id="storageUsed">0 MB</div>
-            </div>
-            <div class="stat-card">
-                <h3>Total Views</h3>
-                <div class="value" id="totalViews">0</div>
-            </div>
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+            <button class="tab-btn" onclick="switchTab('account')">Account</button>
         </div>
 
-        <div class="section">
-            <h3>📤 Upload File</h3>
-            <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-                <div class="upload-icon">☁️</div>
-                <p class="upload-text">Click or drag files here to upload</p>
-                <p class="upload-subtext">Max size: 100MB | Allowed: JPG, PNG, GIF, WEBP, PDF, TXT, ZIP, JSON, MP4, MP3</p>
-            </div>
-            <div class="progress-bar" id="progressBar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)" accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.txt,.zip,.json,.mp4,.mp3">
-        </div>
-
-        <div class="section">
-            <h3>📁 Your Files</h3>
-            <div id="fileList" class="file-list">
-                <div class="empty-state">
-                    <div class="empty-icon">📭</div>
-                    <p>No files uploaded yet</p>
+        <!-- Dashboard Tab Content -->
+        <div id="dashboardTab" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Files</h3>
+                    <div class="value" id="totalFiles">0</div>
                 </div>
+                <div class="stat-card">
+                    <h3>Storage Used</h3>
+                    <div class="value" id="storageUsed">0 MB</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Views</h3>
+                    <div class="value" id="totalViews">0</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>📤 Upload File</h3>
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon">☁️</div>
+                    <p class="upload-text">Click or drag files here to upload</p>
+                    <p class="upload-subtext">Max size: 100MB | Allowed: JPG, PNG, GIF, WEBP, PDF, TXT, ZIP, JSON, MP4, MP3</p>
+                </div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)" accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.txt,.zip,.json,.mp4,.mp3">
+            </div>
+
+            <div class="section">
+                <h3>📁 Your Files</h3>
+                <div id="fileList" class="file-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>No files uploaded yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Tab Content -->
+        <div id="accountTab" class="tab-content">
+            <div class="section">
+                <h3>👤 Account Information</h3>
+                <div class="account-info">
+                    <div class="info-card">
+                        <div class="info-label">Username</div>
+                        <div class="info-value" id="accountUsername">Loading...</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Account Created</div>
+                        <div class="info-value" id="accountCreated">Loading...</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Total Uploads</div>
+                        <div class="info-value" id="accountUploads">0</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Total Storage</div>
+                        <div class="info-value" id="accountStorage">0 MB</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>🔐 Security</h3>
+                <p style="color: rgba(255, 255, 255, 0.5); margin-bottom: 16px;">Manage your account security settings</p>
+                <button class="btn btn-secondary" style="width: auto;" onclick="showNotification('Password change coming soon!', 'success')">Change Password</button>
             </div>
         </div>
     </div>
@@ -745,6 +855,33 @@ body {
         const API_URL = 'https://api.cattoclient.com';
         const WEB_LOGIN_KEY = 'f4b8e2a9c6d3f1a7e5b9d4c8f2a6e3d1b7f5a2c9e6d4b1f8a3c7e2d5b9f4a6c1';
 
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            if (tabName === 'dashboard') {
+                document.getElementById('dashboardTab').classList.add('active');
+            } else if (tabName === 'account') {
+                document.getElementById('accountTab').classList.add('active');
+                updateAccountInfo();
+            }
+        }
+
+        function updateAccountInfo() {
+            const username = localStorage.getItem('username');
+            document.getElementById('accountUsername').textContent = username || 'Unknown';
+            document.getElementById('accountCreated').textContent = 'Member since 2024';
+            document.getElementById('accountUploads').textContent = document.getElementById('totalFiles').textContent;
+            document.getElementById('accountStorage').textContent = document.getElementById('storageUsed').textContent;
+        }
 
         function showNotification(message, type = 'success') {
             const notification = document.createElement('div');
@@ -834,6 +971,7 @@ body {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('dashboardContainer').classList.add('active');
             document.getElementById('dashboardUsername').textContent = userData.username;
+            document.body.classList.add('dashboard-active');
             
             await Promise.all([loadStats(), loadFiles()]);
         }
@@ -1026,6 +1164,7 @@ body {
                 document.getElementById('loginContainer').style.display = 'flex';
                 document.getElementById('loginEmail').value = '';
                 document.getElementById('loginPassword').value = '';
+                document.body.classList.remove('dashboard-active');
                 showSuccess('Logged out successfully');
             }
         }
@@ -1071,6 +1210,7 @@ body {
                     });
                     
                     if (response.ok) {
+                        document.body.classList.add('dashboard-active');
                         showDashboard({ username });
                     } else {
                         localStorage.clear();
