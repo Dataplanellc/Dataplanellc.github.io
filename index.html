@@ -24,9 +24,11 @@
         }
         
         body.dashboard-active {
-            align-items: flex-start;
-            padding: 0;
-        }
+    align-items: flex-start;
+    padding: 0;
+    overflow-y: auto;  /* Add this */
+    height: 100vh;     /* Add this */
+}
 
         /* Enhanced dark purple gradient background */
         .shader-background {
@@ -124,12 +126,12 @@
 
         /* Dashboard Layout */
         .dashboard-wrapper {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 10;
-            padding: 80px 40px 40px 40px;
-        }
+    display: none;
+    position: relative;  /* Change from fixed to relative */
+    min-height: 100vh;   /* Change from inset: 0 to min-height */
+    z-index: 10;
+    padding: 80px 40px 40px 40px;
+}
 
         .dashboard-wrapper.active {
             display: flex;
