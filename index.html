@@ -704,25 +704,221 @@
             display: block;
         }
 
-        .client-placeholder {
-            background: rgba(20, 20, 20, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            padding: 100px 40px;
-            text-align: center;
-            backdrop-filter: blur(10px);
+        .client-header {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        .client-placeholder h2 {
+        .client-title {
             font-size: 2.5rem;
             font-weight: 700;
             color: #f9fafb;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
 
-        .client-placeholder p {
+        .client-title .neon {
+            color: #a855f7;
+        }
+
+        .client-subtitle {
             font-size: 1.1rem;
             color: #9ca3af;
+        }
+
+        .download-section {
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .download-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: block;
+            filter: brightness(0) saturate(100%) invert(88%) sepia(8%) saturate(140%) hue-rotate(185deg) brightness(95%) contrast(92%);
+        }
+
+        .download-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f9fafb;
+            margin-bottom: 12px;
+        }
+
+        .download-description {
+            color: #9ca3af;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-download {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .announcements-section {
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) saturate(100%) invert(88%) sepia(8%) saturate(140%) hue-rotate(185deg) brightness(95%) contrast(92%);
+        }
+
+        .section-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f9fafb;
+        }
+
+        .announcement-item {
+            background: rgba(25, 25, 25, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .announcement-item:hover {
+            background: rgba(30, 25, 40, 0.6);
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateX(5px);
+        }
+
+        .announcement-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .announcement-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f9fafb;
+            margin-bottom: 8px;
+        }
+
+        .announcement-text {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .announcement-date {
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+
+        .changelog-item {
+            background: rgba(25, 25, 25, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .changelog-item:hover {
+            background: rgba(30, 25, 40, 0.6);
+            border-color: rgba(6, 182, 212, 0.3);
+            transform: translateX(5px);
+        }
+
+        .changelog-version {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(6, 182, 212, 0.2);
+            color: #06b6d4;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 6px;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .changelog-date {
+            color: #6b7280;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+
+        .changelog-changes {
+            list-style: none;
+            padding: 0;
+        }
+
+        .changelog-changes li {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .changelog-changes li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+            font-weight: bold;
         }
 
         /* Responsive */
@@ -791,6 +987,23 @@
             .btn-secondary {
                 width: 100%;
             }
+
+            .two-column-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-download {
+                justify-content: center;
+            }
+
+            .client-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -810,6 +1023,7 @@
         <div class="taskbar-tabs">
             <a class="taskbar-tab active" onclick="switchPage('cdn')">CDN</a>
             <a class="taskbar-tab" onclick="switchPage('client')">Client</a>
+            <a class="taskbar-tab" onclick="switchPage('account')">Account</a>
         </div>
         <div class="taskbar-divider"></div>
         <button class="taskbar-logout" onclick="handleLogout()">Logout</button>
@@ -849,7 +1063,6 @@
                 <button class="tab-btn active" onclick="switchMainTab('overview')">Overview</button>
                 <button class="tab-btn" onclick="switchMainTab('files')">Files</button>
                 <button class="tab-btn" onclick="switchMainTab('upload')">Upload</button>
-                <button class="tab-btn" onclick="switchMainTab('account')">Account</button>
             </div>
 
             <!-- Overview Tab -->
@@ -909,7 +1122,7 @@
                 </div>
             </div>
 
-            <!-- Account Tab -->
+            <!-- Account Tab (Inside CDN Dashboard) -->
             <div id="accountTab" class="tab-content">
                 <div class="section">
                     <h3 class="section-title">Account Information</h3>
@@ -943,9 +1156,118 @@
 
         <!-- Client Page -->
         <div class="client-page" id="clientPage">
-            <div class="client-placeholder">
-                <h2>Client Dashboard</h2>
-                <p>Coming soon - Manage your Catto client settings and configurations</p>
+            <div class="client-header">
+                <h1 class="client-title"><span class="neon">Catto</span> Client</h1>
+                <p class="client-subtitle">Download the latest version and stay updated</p>
+            </div>
+
+            <!-- Download Section -->
+            <div class="download-section">
+                <img src="https://cdn.cattoclient.com/data/6ed01dd29e1f4979.png" alt="Download" class="download-icon">
+                <h2 class="download-title">Download Catto Client</h2>
+                <p class="download-description">Get the latest version of Catto Client with improved performance and new features</p>
+                <div class="download-buttons">
+                    <a href="https://cdn.cattoclient.com/data/260984ce11926e4b.zip" class="btn-download" onclick="showNotification('Download started!', 'success'); return false;">
+                        <img src="https://cdn.cattoclient.com/data/b5fdfba611b3ad36.png" alt="Windows" style="width: 20px; height: 20px;">
+                        <span>Download for Windows</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Announcements and Changelog Grid -->
+            <div class="two-column-grid">
+                <!-- Announcements Section -->
+                <div class="announcements-section">
+                    <div class="section-header">
+                        <img src="https://cdn.cattoclient.com/data/d81fda9f184d699d.png" alt="Announcements" class="section-icon">
+                        <h3 class="section-heading">Announcements</h3>
+                    </div>
+
+                    <div class="announcement-item">
+                        <span class="announcement-badge">New</span>
+                        <div class="announcement-title">Major Update Coming Soon</div>
+                        <p class="announcement-text">We're working on a major update with exciting new features including improved performance and a redesigned interface.</p>
+                        <div class="announcement-date">November 8, 2025</div>
+                    </div>
+                    
+                    <div class="announcement-item">
+                        <span class="announcement-badge">Info</span>
+                        <div class="announcement-title">New Discord Community</div>
+                        <p class="announcement-text">Join our Discord server to connect with other users and get support from the team.</p>
+                        <div class="announcement-date">November 9, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Changelog Section -->
+                <div class="announcements-section">
+                    <div class="section-header">
+                        <img src="https://cdn.cattoclient.com/data/3c2dc996a6eb8326.png" alt="Changelog" class="section-icon">
+                        <h3 class="section-heading">Changelog</h3>
+                    </div>
+
+                    <div class="changelog-item">
+                        <span class="changelog-version">v2.1.0</span>
+                        <div class="changelog-date">Released: November 6, 2025</div>
+                        <ul class="changelog-changes">
+                            <li>Added new dashboard with improved UI/UX</li>
+                            <li>Fixed memory leak in file upload process</li>
+                        </ul>
+                    </div>
+
+                    <div class="changelog-item">
+                        <span class="changelog-version">v2.0.5</span>
+                        <div class="changelog-date">Released: October 28, 2025</div>
+                        <ul class="changelog-changes">
+                            <li>Bug fixes and stability improvements</li>
+                            <li>Updated file type support</li>
+                        </ul>
+                    </div>
+
+                    <div class="changelog-item">
+                        <span class="changelog-version">v2.0.0</span>
+                        <div class="changelog-date">Released: October 15, 2025</div>
+                        <ul class="changelog-changes">
+                            <li>Improved authentication system</li>
+                            <li>Performance optimizations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Page (Separate from CDN) -->
+        <div class="dashboard-page" id="accountPage">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Account <span class="neon">Settings</span></h1>
+                <p class="dashboard-subtitle">Manage your account information and preferences</p>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Account Information</h3>
+                <div class="account-info-grid">
+                    <div class="info-card">
+                        <div class="info-label">Username</div>
+                        <div class="info-value" id="accountPageUsername">Loading...</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Account Created</div>
+                        <div class="info-value" id="accountPageCreated">Member since 2024</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Total Uploads</div>
+                        <div class="info-value" id="accountPageUploads">0</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Total Storage</div>
+                        <div class="info-value" id="accountPageStorage">0 MB</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Security</h3>
+                <p style="color: #9ca3af; margin-bottom: 20px; font-size: 0.95rem;">Manage your account security settings</p>
+                <button class="btn-secondary" onclick="showNotification('Password change coming soon!', 'success')">Change Password</button>
             </div>
         </div>
     </div>
@@ -958,13 +1280,19 @@
             document.querySelectorAll('.taskbar-tab').forEach(tab => tab.classList.remove('active'));
             event.target.classList.add('active');
 
+            // Hide all pages
             document.getElementById('dashboardPage').classList.remove('active');
             document.getElementById('clientPage').classList.remove('active');
+            document.getElementById('accountPage').classList.remove('active');
 
+            // Show the selected page
             if (pageName === 'cdn') {
                 document.getElementById('dashboardPage').classList.add('active');
             } else if (pageName === 'client') {
                 document.getElementById('clientPage').classList.add('active');
+            } else if (pageName === 'account') {
+                document.getElementById('accountPage').classList.add('active');
+                updateAccountPageInfo();
             }
         }
 
@@ -991,6 +1319,13 @@
             document.getElementById('accountUsername').textContent = username || 'Unknown';
             document.getElementById('accountUploads').textContent = document.getElementById('totalFiles').textContent;
             document.getElementById('accountStorage').textContent = document.getElementById('storageUsed').textContent;
+        }
+
+        function updateAccountPageInfo() {
+            const username = localStorage.getItem('username');
+            document.getElementById('accountPageUsername').textContent = username || 'Unknown';
+            document.getElementById('accountPageUploads').textContent = document.getElementById('totalFiles').textContent;
+            document.getElementById('accountPageStorage').textContent = document.getElementById('storageUsed').textContent;
         }
 
         function showNotification(message, type = 'success') {
@@ -1068,6 +1403,8 @@
         async function showDashboard(userData) {
             document.getElementById('loginPage').style.display = 'none';
             document.getElementById('dashboardPage').classList.add('active');
+            document.getElementById('clientPage').classList.remove('active');
+            document.getElementById('accountPage').classList.remove('active');
             document.getElementById('header').style.display = 'flex';
             document.getElementById('dashboardUsername').textContent = userData.username;
             
@@ -1290,6 +1627,7 @@
                 localStorage.clear();
                 document.getElementById('dashboardPage').classList.remove('active');
                 document.getElementById('clientPage').classList.remove('active');
+                document.getElementById('accountPage').classList.remove('active');
                 document.getElementById('header').style.display = 'none';
                 document.getElementById('loginPage').style.display = 'flex';
                 document.getElementById('loginEmail').value = '';
